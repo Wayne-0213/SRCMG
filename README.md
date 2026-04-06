@@ -21,25 +21,32 @@ The processed dataset used for all experiments in this study is publicly release
 
 This released dataset includes all data required to reproduce the experimental results reported in the paper.
 
-Reproduction Guide
+## Reproduction Guide
 
 If you would like to reproduce our experiments, please follow the steps below:
 
-Prepare the dataset
-Download and set up the processed dataset released in this repository.
-Extract AST differences
-Run the extract_ast script in the code feature construction directory to extract the differential ASTs for both the training and test sets.
-Retrieve similar examples
-Run the retrieval script in the RQ1 directory to retrieve similar code examples.
-Generate edit sequences
-Run the generate_edit_sequence_line script in the code feature construction directory to construct code edit sequences.
-Generate AST-based representations
-Run generate_retrieval_astnl_new for the retrieval set
-Run generate_test_astnl_new for the test set
-Both scripts are located in the code feature construction directory and are used to summarize differential ASTs.
-Generate commit messages
-Run the generate_message_first script in the RQ1 directory to generate initial commit messages.
-Analyze syntax differences
-Run the step2_syntax_cpu script in the RQ1 directory to analyze the differences between generated commit messages and ground-truth messages.
-Optimize commit messages
-Run the generate_message_optimize script in the RQ1 directory to refine and improve the generated commit messages.
+1. **Prepare the dataset**  
+   Download and set up the processed dataset released in this repository.
+
+2. **Extract AST differences**  
+   Run the `extract_ast` script in the `code feature construction` directory to extract the differential ASTs for both the training and test sets.
+
+3. **Retrieve similar examples**  
+   Run the `retrieval` script in the `RQ1` directory to retrieve similar code examples.
+
+4. **Generate edit sequences**  
+   Run the `generate_edit_sequence_line` script in the `code feature construction` directory to construct code edit sequences.
+
+5. **Generate AST-based representations**  
+   - Run `generate_retrieval_astnl_new` for the retrieval set  
+   - Run `generate_test_astnl_new` for the test set  
+   Both scripts are located in the `code feature construction` directory and are used to summarize differential ASTs.
+
+6. **Generate commit messages**  
+   Run the `generate_message_first` script in the `RQ1` directory to generate initial commit messages.
+
+7. **Analyze syntax differences**  
+   Run the `step2_syntax_cpu` script in the `RQ1` directory to analyze the differences between generated commit messages and ground-truth messages.
+
+8. **Optimize commit messages**  
+   Run the `generate_message_optimize` script in the `RQ1` directory to refine and improve the generated commit messages.
