@@ -1,4 +1,14 @@
 # SRCMG
+
+## Human Evaluation Questionnaire / 人工评价问卷
+
+The RQ1 human evaluation is available as a browser-based questionnaire with 50 questions and 250 candidate messages. It preserves the original sample order and evaluates informativeness, conciseness, expressiveness (1–5), and acceptance (0/1).
+
+- **[Open the questionnaire / 在线填写问卷](https://wayne-0213.github.io/SRCMG/human-evaluation/)**
+- **[Instructions, protocol, export format and source / 使用说明与源码](docs/human-evaluation/README.md)**
+
+The questionnaire supports local autosave, draft import/export, and JSON/CSV results. Answers stay in the browser; participants download their results and return them to the study organizer. It can also run offline by opening `docs/human-evaluation/index.html`.
+
 # Dataset Description
 
 This repository uses a processed version of the MCMD-NT dataset for the experiments in our study.

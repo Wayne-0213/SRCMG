@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SRCMG 提交消息生成人工评价问卷。根据代码变更，对候选消息的信息充分性、简洁性、表达性及可接受性进行评价。">
+  <meta name="color-scheme" content="light">
+  <title>SRCMG · 人工评价问卷</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='10' fill='%231d3542'/%3E%3Ctext x='10' y='29' fill='white' font-size='27' font-family='monospace'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#question">跳到当前题目</a>
+  <header class="site-header">
+    <a class="wordmark" href="https://github.com/Wayne-0213/SRCMG" target="_blank" rel="noopener noreferrer"><span class="brand-mark" aria-hidden="true">S</span> SRCMG <span class="header-divider">/</span> <span class="wordmark-sub">HUMAN EVALUATION</span></a>
+    <a class="repo-link" href="https://github.com/Wayne-0213/SRCMG" target="_blank" rel="noopener noreferrer">GitHub 仓库 ↗</a>
+  </header>
+  <main>
+    <section class="intro" aria-labelledby="title">
+      <div><p class="eyebrow">RESEARCH QUESTIONNAIRE <span>01 / RQ1</span></p><h1 id="title">提交消息生成<span>人工评价问卷</span></h1><p class="lead">阅读代码变更与参考消息，评价每条候选消息的质量。<br>你的判断，将帮助我们理解提交消息生成方法的实际表现。</p></div>
+      <div class="study-facts"><div><strong id="total-questions">50</strong><span>道代码变更题目</span></div><div><strong id="total-candidates">250</strong><span>条候选提交消息</span></div><p>Java / Python · 1–5 分量表<br>逐题填写 · 浏览器本地保存</p></div>
+    </section>
+    <details class="guide panel" id="guide">
+      <summary>填写前，请了解评价标准 <span class="summary-note">三个质量维度 + 是否接受</span></summary>
+      <div class="guide-body"><p>每题包含代码变更、真实提交消息作为参考，以及已打乱顺序的候选消息。请结合代码独立判断；参考消息不是唯一正确表述。候选消息仅显示 A–E 标签。</p>
+        <div class="rubrics"><div><strong>01 信息充分性</strong><p>提交消息反映代码变更重要信息的程度。</p></div><div><strong>02 简洁性</strong><p>提交消息中冗余信息的多少，冗余越少分数越高。</p></div><div><strong>03 表达性</strong><p>提交消息的语法正确性与语言流畅性。</p></div></div>
+        <p>各维度均为 <strong>1–5 分，分数越高越好</strong>。同时判断是否接受该候选消息作为最终提交消息（接受 = 1，不接受 = 0）。总分为三个维度的平均分。</p>
+        <p class="privacy-note">答案仅保存在当前浏览器，不会自动上传。完成后请下载结果文件，按研究组织者提供的方式交回。可使用匿名评价者编号，无需填写姓名。</p>
+      </div>
+    </details>
+    <section class="setup panel" aria-label="填写设置">
+      <label for="evaluator">评价者编号 <span>选填</span><input id="evaluator" type="text" maxlength="80" autocomplete="off" placeholder="例如 rater_01"></label>
+      <label for="question-limit">本次评价题数 <span>从第 1 题开始</span><input id="question-limit" type="number" min="1" max="50" step="1" value="50"></label>
+      <div class="save-info"><span class="status-dot" aria-hidden="true"></span><span id="save-status" role="status">作答后自动保存</span></div>
+      <details class="downloads" id="downloads"><summary>下载与备份 ↓</summary><div class="download-menu"><button id="download-draft" type="button">下载草稿 JSON</button><button id="import-draft" type="button">导入草稿 / 旧版结果</button><hr><button id="export-detail" type="button">导出完整明细 JSON</button><button id="export-csv" type="button">导出统计 CSV</button><button id="export-summary" type="button">导出统计 JSON</button></div></details>
+      <input id="import-file" type="file" accept=".json,application/json" hidden>
+    </section>
+    <section class="workspace">
+      <aside class="question-sidebar" aria-label="题目导航">
+        <div class="sidebar-heading"><h2>填写进度</h2><strong id="progress-percent">0%</strong></div>
+        <progress id="progress" max="250" value="0" aria-label="已完成的候选消息"></progress>
+        <p id="progress-text">已评价 0 / 250 条消息</p><p class="question-completion" id="question-completion">已完成 0 / 50 题</p>
+        <nav id="question-nav" class="question-grid" aria-label="跳转到题目"></nav>
+        <div class="legend"><span><i class="legend-current"></i>当前</span><span><i class="legend-complete"></i>完成</span><span><i class="legend-partial"></i>已开始</span></div>
+        <button class="text-button" id="first-incomplete" type="button">继续未完成题目 →</button>
+        <p class="sidebar-note">可以随时暂停。使用同一浏览器再次打开，会恢复作答进度。</p>
+      </aside>
+      <div class="question-main"><section id="question" aria-labelledby="question-title" tabindex="-1"></section>
+        <div class="bottom-nav"><button id="previous" class="button secondary" type="button">← 上一题</button><span id="position"></span><button id="next" class="button primary" type="button">下一题 →</button></div>
+        <p class="return-note">全部完成后导出明细 JSON，交回研究组织者。问卷不会自动提交。</p>
+      </div>
+    </section>
+    <noscript><div class="panel">本问卷需要启用 JavaScript 才能填写和保存答案。</div></noscript>
+    <p id="fatal-error" class="panel" role="alert" hidden>问卷数据未能加载。请确认 index.html、styles.css、data.js 和 app.js 位于同一目录，然后重新打开。</p>
+  </main>
+  <footer><span>SRCMG / 提交消息生成研究</span><span>开放研究 · 人工评价</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+</body>
+</html>

@@ -1,0 +1,7 @@
+node_modules/
+package-lock.json
+test-results/
+evaluation_draft_*.json
+evaluation_results_*.json
+evaluation_summary_*.json
+evaluation_summary_*.csv
